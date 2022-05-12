@@ -1,0 +1,9 @@
+INSERT INTO Loan(loan_id,branch_name,loan_money,pay_cnt)
+VALUES ('00000000000000000000','hefei',10000,5);
+INSERT INTO Pay(pay_id,loan_id,pay_date,pay_money)
+VALUES ('00000000000000000000','00000000000000000000','2019-01-01',200);
+INSERT INTO Pay(pay_id,loan_id,pay_date,pay_money)
+VALUES ('00000000000000000001','00000000000000000000','2019-01-02',200);
+
+INSERT INTO loan_to_client(client_id,loan_id)
+VALUES ('510105200101010008','00000000000000000000')

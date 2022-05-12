@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>BankSys - Index</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="/static/assets/img/favicon.png" rel="icon">
+  <link href="/static/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="/static/assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="/static/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/static/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/static/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="/static/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="/static/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="/static/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="/static/assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+  <section id="hero" class="d-flex align-items-center justify-content-center">
+    <div class="container" data-aos="fade-up">
+      <div class="page-header">
+        <h1>Client Management</h1>
+        <div class="form-group">
+        <form method="GET" action="" class="navbar-form navbar-left">
+          {% csrf_token %}
+            <div  style="display:inline-block;">
+            <span style="color: #FFFFFF">name:</span>
+            <div  style="display:inline-block;">
+            <input type="text" name="client_name" class="form-control" placeholder="Input the client's name.">
+            </div>
+            </div>
+            <div  style="display:inline-block;">
+            <span style="color: #FFFFFF"> ID:</span>
+            <div  style="display:inline-block;">
+            <input type="text" name="client_id" class="form-control" placeholder="Input the client's ID.">
+            </div>
+            </div>
+            <div  style="display:inline-block;">
+            <button type="submit" class="btn btn-default" style="color: #FFFFFF">Search</button>
+            </div>
+            <span style="color: #FFFFFF">{{error_msg}} </span>
+        </form>
+        <form method="post" action="">
+        {% csrf_token %}
+        <input type="hidden"  name="new_but" value=1>
+        <button type="submit" name="new_button" value="1" class="btn btn-warning">New</button>
+        </form>
+        </div>
+        <div class="panel panel-default">
+          <!-- Default panel contents -->
+          <div class="panel-heading" style="color: #FFFFFF">Here's the results for searching.</div>
+          <!-- Table -->
+          <table class="table" style="color: #FFFFFF">
+          <thead>
+              <tr>
+                <th>ID</th>
+                <th>name</th>
+                <th>tel</th>
+                <th>address</th>
+                <th>operation</th>
+              </tr>
+          </thead>
+          <tbody>
+            {% for item in client_list %}
+            <tr>
+              <td>{{item.0}}</td>
+              <td>{{item.1}}</td>
+              <td>{{item.2}}</td>
+              <td>{{item.3}}</td>
+              <td>
+                <div  style="display:inline-block;">
+                <form method="post" action="/index/client/detail">
+                {% csrf_token %}
+                <button type="submit" name="detail_button" value={{item.0}} class="btn btn-info">Detail</button>
+                </form>
+                </div>
+                <div  style="display:inline-block;">
+                <form method="get" action="/index/client/edit">
+                {% csrf_token %}
+                <button type="submit" name="edit_button" value={{item.0}} class="btn btn-primary">Edit</button>
+                </form>
+                </div>
+                <div  style="display:inline-block;">
+                <form method="post" action="">
+                {% csrf_token %}
+                <button type="submit" name="delete_button" value={{item.0}} class="btn btn-danger">Delete</button>
+                </form>
+                </div>
+              </td>
+            <tr>
+            {% endfor %}
+          </tbody>
+          </table>
+        </div>
+      </div>
+  </section><!-- End Hero -->
+    
+    </tbody>
+    </table>
+  </div>
+  
+
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="/static/assets/vendor/purecounter/purecounter.js"></script>
+  <script src="/static/assets/vendor/aos/aos.js"></script>
+  <script src="/static/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/static/assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="/static/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="/static/assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="/static/assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="/static/assets/js/main.js"></script>
+
+</body>
+</html>
